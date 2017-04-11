@@ -4,16 +4,28 @@
   "description": "A (no frills) event emitter implementation",
   "author": "Christian Danielsen",
   "license": "MIT",
-  "keywords": ["emitter", "publish", "subscribe", "event"],
+  "keywords": [
+    "emitter",
+    "publish",
+    "subscribe",
+    "event"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cdanielsen/emittr.git"
   },
   "main": "index.js",
   "scripts": {
-    "test": "tap tests/*.js"
+    "test": "tap tests/*.js",
+    "eslint": "eslint"
   },
   "devDependencies": {
-    "eslint": "^3.19.0"
+    "eslint": "^3.19.0",
+    "eslint-config-standard": "^10.2.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-node": "^4.2.2",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "tap": "^10.3.2"
   }
 }
