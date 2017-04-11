@@ -1,0 +1,19 @@
+{
+  "name": "emittr",
+  "version": "0.0.1",
+  "description": "A (no frills) event emitter implementation",
+  "author": "Christian Danielsen",
+  "license": "MIT",
+  "keywords": ["emitter", "publish", "subscribe", "event"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cdanielsen/emittr.git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "tap tests/*.js"
+  },
+  "devDependencies": {
+    "eslint": "^3.19.0"
+  }
+}
