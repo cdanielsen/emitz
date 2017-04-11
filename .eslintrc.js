@@ -6,5 +6,9 @@ module.exports = {
     ],
     "rules": {
       "semi": ["error", "always"]
+    },
+    "env": {
+        "browser": true,
+        "node": true
     }
 };
