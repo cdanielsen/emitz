@@ -14,7 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/cdanielsen/emittr.git"
   },
-  "main": "index.js",
+  "main": "emittr.js",
   "scripts": {
     "test": "tap tests/*.js",
     "eslint": "eslint"

@@ -3,13 +3,15 @@
 const emittr = require('../emittr.js');
 const tap = require('tap');
 
+// Test object factory
 let Cat = function () {
   return {
     name: null,
     age: null,
-    meow: () => console.log('meow')
+    purr: () => console.log('purr')
   };
 };
+
 tap.test('The emitter module should...', tap => {
   tap.test('return a function', t => {
     t.is(typeof emittr, 'function');
@@ -30,6 +32,18 @@ tap.test('The emitter module should...', tap => {
 
     t.true(emittableCat.hasOwnProperty('on'));
     t.is(typeof emittableCat.on, 'function');
+    t.end();
+  });
+  tap.end();
+});
+
+tap.test('The #on method should...', tap => {
+  tap.test('register an event on the target object\'s \'events\' object', t => {
+    let testCat = Cat();
+    let emittableCat = emittr(testCat);
+    emittableCat.on('meow', () => {});
+
+    t.true(emittableCat.events.hasOwnProperty('meow'));
     t.end();
   });
   tap.end();
