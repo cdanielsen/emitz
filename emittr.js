@@ -37,7 +37,7 @@ let Emitter = function (targetObject) {
         return null;
       }
       this.events[name] = this.events[name].filter(registeredHandler => registeredHandler !== listenerToUnregister);
-      console.log(`${listenerToUnregister.name} listener unregistered from ${name} event`);
+      console.info(`${listenerToUnregister.name} listener unregistered from ${name} event`);
     },
     nuke: function (name) {
       if (!name || !this.events[name]) {

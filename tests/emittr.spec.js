@@ -7,8 +7,8 @@ const sinon = require('sinon');
 // Setup helpers
 const Cat = function () {
   return {
-    name: null,
-    age: null,
+    name: 'Chester',
+    age: 10,
     purr: () => console.log('purr')
   };
 };
@@ -18,7 +18,11 @@ const setup = () => {
   return emittr(testCat);
 };
 
-// Test
+// Supress non-error console output from module when running tests
+console.warn = function () {};
+console.info = function () {};
+
+// Tests
 tap.test('The emitter module should...', tap => {
   tap.test('return a function', t => {
     t.is(typeof emittr, 'function');
