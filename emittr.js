@@ -8,7 +8,9 @@ let Emitter = function (targetObject) {
   let _emittr = {
     events: {},
     on: function (name, callback) {
-      this.events[name] = [];
+      if (!this.events[name]) {
+        this.events[name] = [];
+      }
       this.events[name].push(callback);
     },
     emit: function (name, ...args) {
@@ -36,6 +38,13 @@ let Emitter = function (targetObject) {
       }
       this.events[name] = this.events[name].filter(registeredHandler => registeredHandler !== listenerToUnregister);
       console.log(`${listenerToUnregister.name} listener unregistered from ${name} event`);
+    },
+    nuke: function (name) {
+      if (!name || !this.events[name]) {
+        console.warn(`Missing event name or event does not exist!`);
+        return null;
+      }
+      this.events[name] = [];
     }
   };
   return Object.assign({}, targetObject, _emittr);

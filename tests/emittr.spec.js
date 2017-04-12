@@ -4,7 +4,7 @@ const emittr = require('../emittr.js');
 const tap = require('tap');
 const sinon = require('sinon');
 
-// Test object factory
+// Setup helpers
 const Cat = function () {
   return {
     name: null,
@@ -18,6 +18,7 @@ const setup = () => {
   return emittr(testCat);
 };
 
+// Test
 tap.test('The emitter module should...', tap => {
   tap.test('return a function', t => {
     t.is(typeof emittr, 'function');
@@ -56,6 +57,17 @@ tap.test('The #on method should...', tap => {
     emittableCat.on('meow', () => {});
 
     t.true(emittableCat.events.hasOwnProperty('meow'));
+    t.end();
+  });
+  tap.test('register multiple events', t => {
+    let emittableCat = setup();
+    let handler1 = () => { /* do something */ };
+    let handler2 = () => { /* do something else */ };
+
+    emittableCat.on('meow', handler1);
+    emittableCat.on('meow', handler2);
+
+    t.is(emittableCat.events['meow'].length, 2);
     t.end();
   });
   tap.end();
@@ -126,6 +138,29 @@ tap.test('The #off method should...', tap => {
 
     emittableCat.off('hiss', handler);
     t.false(emittableCat.events['hiss'].includes(handler));
+    t.end();
+  });
+  tap.end();
+});
+
+tap.test('The #nuke method should...', tap => {
+  tap.test('consume an event name, and return with a warning if the event does not exist', t => {
+    let emittableCat = setup();
+    let returnValue = emittableCat.nuke('stretch');
+
+    t.is(returnValue, null);
+    t.end();
+  });
+  tap.test('consume an existing event name, and remove any registered handlers', t => {
+    let emittableCat = setup();
+    let handler1 = () => { /* do something */ };
+    let handler2 = () => { /* do something else */ };
+
+    emittableCat.on('scratch', handler1);
+    emittableCat.on('scratch', handler2);
+    emittableCat.nuke('scratch');
+
+    t.is(emittableCat.events['scratch'].length, 0);
     t.end();
   });
   tap.end();
