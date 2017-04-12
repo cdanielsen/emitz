@@ -10,9 +10,17 @@ let Emitter = function (targetObject) {
     on: function (name, callback) {
       this.events[name] = [];
       this.events[name].push(callback);
+    },
+    emit: function (name, ...args) {
+      if (!this.events[name]) {
+        console.info(`${name} event not registered!`);
+        return null;
+      } else {
+        this.events[name].forEach(listener => listener(...args));
+      }
     }
   };
-
+  // targetObject._emittr = _emittr;
   return Object.assign({}, targetObject, _emittr);
 };
 

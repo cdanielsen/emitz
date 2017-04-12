@@ -16,7 +16,7 @@
   },
   "main": "emittr.js",
   "scripts": {
-    "test": "tap tests/*.js",
+    "test": "tap tests/*.js -R spec",
     "eslint": "eslint"
   },
   "devDependencies": {
@@ -26,6 +26,7 @@
     "eslint-plugin-node": "^4.2.2",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
+    "sinon": "^2.1.0",
     "tap": "^10.3.2"
   }
 }
