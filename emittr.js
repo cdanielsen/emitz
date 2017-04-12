@@ -13,14 +13,31 @@ let Emitter = function (targetObject) {
     },
     emit: function (name, ...args) {
       if (!this.events[name]) {
-        console.info(`${name} event not registered!`);
+        console.warn(`${name} event not registered!`);
         return null;
       } else {
         this.events[name].forEach(listener => listener(...args));
       }
+    },
+    off: function (name, listenerToUnregister) {
+      if (!name || !listenerToUnregister) {
+        console.warn('Missing required arguments');
+        return null;
+      }
+
+      if (!this.events[name]) {
+        console.warn(`${name} event not registered on object it was called on!`);
+        return null;
+      }
+
+      if (!this.events[name].includes(listenerToUnregister)) {
+        console.warn(`${listenerToUnregister.name} not a registered listener of ${name} event!`);
+        return null;
+      }
+      this.events[name] = this.events[name].filter(registeredHandler => registeredHandler !== listenerToUnregister);
+      console.log(`${listenerToUnregister.name} listener unregistered from ${name} event`);
     }
   };
-  // targetObject._emittr = _emittr;
   return Object.assign({}, targetObject, _emittr);
 };
 

@@ -93,3 +93,40 @@ tap.test('The #emit method should...', tap => {
   });
   tap.end();
 });
+
+tap.test('The #off method should...', tap => {
+  tap.test('return with a warning if required arguments are missing', t => {
+    let emittableCat = setup();
+    let returnValue = emittableCat.off();
+
+    t.is(returnValue, null);
+    t.end();
+  });
+  tap.test('consume an event name and a listener, and return with a warning if the event does not exist', t => {
+    let emittableCat = setup();
+    let returnValue = emittableCat.off('scratch');
+
+    t.is(returnValue, null);
+    t.end();
+  });
+  tap.test('consume an existing event name and a listener, and return with a warning if the listener does not exist', t => {
+    let emittableCat = setup();
+    let handler = () => { /* do something */ };
+    let unRegisteredHandler = () => { /* do something else */ };
+    emittableCat.on('hiss', handler);
+    emittableCat.off('hiss', unRegisteredHandler);
+    t.end();
+  });
+  tap.test('consume an existing event name and a registered listner of that event, and unregister it from the event', t => {
+    let emittableCat = setup();
+    let handler = () => { /* do something */ };
+
+    emittableCat.on('hiss', handler);
+    t.true(emittableCat.events['hiss'].includes(handler));
+
+    emittableCat.off('hiss', handler);
+    t.false(emittableCat.events['hiss'].includes(handler));
+    t.end();
+  });
+  tap.end();
+});
