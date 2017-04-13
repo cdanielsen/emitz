@@ -19,9 +19,11 @@ let Hipster = {
 
 let emittableHipster = emitz(Hipster);
 
-emittableHipster.on('upAndComingBandInTown', () => {
+const disdainfulCallback = function () {
   console.log(`I've been listening to them for years`);
-});
+}
+
+emittableHipster.on('upAndComingBandInTown', disdainfulCallback);
 
 emittableHipster.emit('upAndComingBandInTown');
 
@@ -64,6 +66,7 @@ Lints the code, and runs tests with coverage report
 
 #### todo / caveats
  - Uses ES2015 throughout / requires node version > 6.9.4. Could pipe through babel to make backward compatible
+ - Needs integration tests
 
 #### license
 MIT
