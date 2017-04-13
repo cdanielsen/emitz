@@ -1,23 +1,23 @@
-# emittr
+# emitz
 A (no frills) event emitter implementation. Create standalone emitter objects, or augment an existing one.
 
 #### install
 
 ```
-npm install --save emittr
+npm install --save emitz
 ```
 
 #### usage
 
 ```
-const emittr = require('emittr');
+const emitz = require('emitz');
 
 let Hipster = {
   name: 'Steve',
   jeanStyle: 'overly tight'
 }
 
-let emittableHipster = emittr(Hipster);
+let emittableHipster = emitz(Hipster);
 
 emittableHipster.on('upAndComingBandInTown', () => {
   console.log(`I've been listening to them for years`);

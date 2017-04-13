@@ -1,6 +1,6 @@
 'use strict';
 
-const emittr = require('../emittr.js');
+const emitz = require('../emitz.js');
 const tap = require('tap');
 const sinon = require('sinon');
 
@@ -14,7 +14,7 @@ const Cat = function () {
 
 const setup = () => {
   let testCat = Cat();
-  return emittr(testCat);
+  return emitz(testCat);
 };
 
 // Silence non-error/log console output when running tests
@@ -25,14 +25,14 @@ console.info = function () {};
 // Tests
 tap.test('The emitter module should...', tap => {
   tap.test('return a function', t => {
-    t.is(typeof emittr, 'function');
+    t.is(typeof emitz, 'function');
     t.end();
   });
 
   tap.test('throw an error if passed argument is not an object', t => {
-    t.throws(() => { emittr('definitelyNotAnObject'); });
-    t.throws(() => { emittr(['thisArrayIsntEither']); });
-    t.throws(() => { emittr(null); });
+    t.throws(() => { emitz('definitelyNotAnObject'); });
+    t.throws(() => { emitz(['thisArrayIsntEither']); });
+    t.throws(() => { emitz(null); });
     t.end();
   });
 

@@ -5,7 +5,7 @@ let Emitter = function (targetObject = {}) {
     throw new Error('Whoops! You must provide a target object');
   }
 
-  let _emittr = {
+  let _emitz = {
     events: {},
     on: function (name, callback) {
       if (!this.events[name]) {
@@ -55,7 +55,7 @@ let Emitter = function (targetObject = {}) {
       this.events[name] = [];
     }
   };
-  return Object.assign({}, targetObject, _emittr);
+  return Object.assign({}, targetObject, _emitz);
 };
 
 module.exports = Emitter;
