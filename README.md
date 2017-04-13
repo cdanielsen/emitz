@@ -1,13 +1,13 @@
-## emittr
+# emittr
 A (no frills) event emitter implementation. Create standalone emitter objects, or augment an existing one.
 
-### install
+#### install
 
 ```
 npm install --save emittr
 ```
 
-### usage
+#### usage
 
 ```
 const emittr = require('emittr');
@@ -28,7 +28,7 @@ emittableHipster.emit('upAndComingBandInTown');
 // --> I've been listening to them for years
 ```
 
-### api
+#### api
 
 ```
 #on(<event>, <handlerFn>)
@@ -38,7 +38,7 @@ Register a handler for a new or existing event
 ```
 #emit(<event>, [...args])
 ```
-Emit an event. All registered listner functions will be triggered / passed in any optional args.
+Emit an event. All registered handler functions will be triggered / passed in any optional args.
 
 ```
 #once(<event>, <handlerFn>)
@@ -46,7 +46,7 @@ Emit an event. All registered listner functions will be triggered / passed in an
 Register a handler (will only be called on the first event emit)
 
 ```
-#off(<event>, <handlerFn)
+#off(<event>, <handlerFn>)
 ```
 Unregister an existing handler for an existing event
 
@@ -55,9 +55,15 @@ Unregister an existing handler for an existing event
 ```
 Remove ALL listeners from the specified event
 
-### tests
+#### tests
 
 ```
 npm test
 ```
 Lints the code, and runs tests with coverage report
+
+#### todo / caveats
+ - Uses ES2015 throughout / requires node version > 6.9.4. Could pipe through babel to make backward compatible
+
+#### license
+MIT

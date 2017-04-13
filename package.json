@@ -14,6 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/cdanielsen/emittr.git"
   },
+  "engines": {"node": ">6.9.1"},
   "main": "emittr.js",
   "scripts": {
     "test": "npm run eslint && tap tests/*.js -R spec --coverage",
