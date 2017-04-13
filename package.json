@@ -1,6 +1,6 @@
 {
   "name": "emitz",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A (no frills) event emitter implementation",
   "author": "Christian Danielsen",
   "license": "MIT",
@@ -15,7 +15,7 @@
     "url": "git+https://github.com/cdanielsen/emitz.git"
   },
   "engines": {"node": ">6.9.1"},
-  "main": "emittr.js",
+  "main": "emitz.js",
   "scripts": {
     "test": "npm run eslint && tap tests/*.js -R spec --coverage",
     "eslint": "eslint **/*.js"
