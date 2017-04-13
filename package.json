@@ -16,8 +16,8 @@
   },
   "main": "emittr.js",
   "scripts": {
-    "test": "tap tests/*.js -R spec",
-    "eslint": "eslint"
+    "test": "npm run eslint && tap tests/*.js -R spec --coverage",
+    "eslint": "eslint **/*.js"
   },
   "devDependencies": {
     "eslint": "^3.19.0",

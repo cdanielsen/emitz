@@ -8,8 +8,7 @@ const sinon = require('sinon');
 const Cat = function () {
   return {
     name: 'Chester',
-    age: 10,
-    purr: () => console.log('purr')
+    age: 10
   };
 };
 
@@ -30,8 +29,7 @@ tap.test('The emitter module should...', tap => {
     t.end();
   });
 
-  tap.test('throw an error if passed argument is missing or not an object', t => {
-    t.throws(emittr);
+  tap.test('throw an error if passed argument is not an object', t => {
     t.throws(() => { emittr('definitelyNotAnObject'); });
     t.throws(() => { emittr(['thisArrayIsntEither']); });
     t.throws(() => { emittr(null); });
@@ -142,7 +140,8 @@ tap.test('The #off method should...', tap => {
   });
   tap.test('consume an event name and a listener, and return with a warning if the event does not exist', t => {
     let emittableCat = setup();
-    let returnValue = emittableCat.off('scratch');
+    let unRegisteredHandler = () => { /* do something */ };
+    let returnValue = emittableCat.off('scratch', unRegisteredHandler);
 
     t.is(returnValue, null);
     t.end();
