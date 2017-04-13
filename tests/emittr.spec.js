@@ -18,7 +18,8 @@ const setup = () => {
   return emittr(testCat);
 };
 
-// Supress non-error console output from module when running tests
+// Silence non-error/log console output when running tests
+// Comment out for debugging
 console.warn = function () {};
 console.info = function () {};
 
@@ -77,6 +78,28 @@ tap.test('The #on method should...', tap => {
   tap.end();
 });
 
+tap.test('The #once method should...', tap => {
+  tap.test('register an event on the target object\'s \'events\' object', t => {
+    let emittableCat = setup();
+    emittableCat.once('meow', () => {});
+
+    t.true(emittableCat.events.hasOwnProperty('meow'));
+    t.end();
+  });
+  tap.test('register an event that fires only after the first emit', t => {
+    let emittableCat = setup();
+    let oneTimerSpy = sinon.spy(() => { console.info('There can only be one'); });
+    emittableCat.once('meow', oneTimerSpy);
+    emittableCat.emit('meow');
+    emittableCat.emit('meow');
+    emittableCat.emit('meow');
+
+    t.is(oneTimerSpy.callCount, 1);
+    t.end();
+  });
+  tap.end();
+});
+
 tap.test('The #emit method should...', tap => {
   tap.test('consume an event name and trigger its handler if it exists', t => {
     let emittableCat = setup();
@@ -96,7 +119,6 @@ tap.test('The #emit method should...', tap => {
   });
   tap.test('consume optional arguments and pass them through to the listener', t => {
     let emittableCat = setup();
-
     let humanReaction = 'Cool your jets, cat!';
     let props = { emotionalState: 'grumpy' };
     let reactToHiss = sinon.spy(() => { /* do something */ });

@@ -13,6 +13,14 @@ let Emitter = function (targetObject) {
       }
       this.events[name].push(callback);
     },
+    once: function (name, callback) {
+      let self = this;
+      let callbackWrapper = function () {
+        self.off(name, callbackWrapper);
+        callback();
+      };
+      this.on(name, callbackWrapper);
+    },
     emit: function (name, ...args) {
       if (!this.events[name]) {
         console.warn(`${name} event not registered!`);
